@@ -1,1 +1,54 @@
+#here correct order will not be maintained
+#But it doesn't matter if they are in a range
+def duplicates(arr, n): 
+	s = {}
+	ans = []
+	for i in arr:
+	    if i in s:
+	        s[i] += 1
+	    else:
+	        s[i] = 1 
+	d = set()    
+	for i in arr:
+	    if s[i] > 1:
+	        if i not in d:
+	            ans.append(i)
+	            d.add(i)
+	        
+	if len(ans) == 0:
+	    return [-1]
+	else:
+	    return ans       
 
+#if numbers are within range 0 to n-1 
+#we can use the array itself as hashmap
+
+def duplicates(arr, n): 
+    ans = []
+    for i in arr:
+        ind = i % n
+        arr[ind] += n
+    for i in range(n):
+        if arr[i]//n > 1:
+            ans.append(i)
+    if len(ans) == 0:
+        return [-1]
+    else:
+        return ans   
+        
+#if in range another way of solving will be
+#using postive and negetive
+
+def duplicates(arr, n): 
+    ans = []
+    for i in range(n):
+        if arr[abs(arr[i])] >= 0:
+            arr[abs(arr[i])] = -arr[abs(arr[i])]
+        else:
+            ans.append(abs(arr[i]))
+    if len(ans) == 0:
+        return [-1]
+    else:
+        return ans       
+
+      
