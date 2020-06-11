@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int arr[1000000];
+
+
+int main() {
+	int n;
+	cin >> n;
+	while(n--){
+	   int size, miss=1000000, rep=1000000;
+	   cin >> size;
+	   for(int i=0; i<size; i++){
+	       cin >> arr[i];
+	   }
+	   for(int i=0;i<size;i++){
+	       int idx = abs(arr[i])-1;
+	       if(arr[idx]>=0) arr[idx] = (0-arr[idx]);
+	       else rep=min(rep, abs(arr[i]));
+	   }
+	   for(int i=0; i<size; i++){
+	       if(arr[i]>0) miss=min(miss, i+1);
+	   }
+	   cout << rep <<" " << miss << endl;
+	}
+	return 0;
+}
