@@ -14,3 +14,20 @@ for _ in range(int(input())):
             l1[j+1] = l2[i]
             l2[i] = last
     print(*l1, *l2)        
+
+#this is in O((m+n)*log(m+n))
+for _ in range(int(input())):
+    n, m= map(int, input().split())
+    l1 = [int(x) for x in input().split()]
+    l2 = [int(x) for x in input().split()]
+    i, j = len(l1)-1, 0
+    while i >= 0 and j < len(l2):
+        if l1[i]>l2[j]:
+            l1[i], l2[j] = l2[j], l1[i]
+        i-=1
+        j+=1
+    l1.sort()
+    l2.sort()
+    print(*l1, *l2)        
+    
+
