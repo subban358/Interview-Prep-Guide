@@ -1,0 +1,16 @@
+#At Worst Case this runs in O(m*n)
+#where m=length of array1 and n=length of array2
+for _ in range(int(input())):
+    n, m= map(int, input().split())
+    l1 = [int(x) for x in input().split()]
+    l2 = [int(x) for x in input().split()]
+    for i in range(len(l2)-1, -1, -1):
+        last = l1[-1]
+        j = len(l1)-2
+        while j >= 0 and l1[j] > l2[i]:
+            l1[j+1] = l1[j]
+            j-=1
+        if j != len(l1)-2 or last > l2[i]:
+            l1[j+1] = l2[i]
+            l2[i] = last
+    print(*l1, *l2)        
