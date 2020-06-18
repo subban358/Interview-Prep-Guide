@@ -1,0 +1,25 @@
+#O(logn) time complexity
+def search(l, x, flag):
+    start, end = 0, len(l)-1
+    res = -1
+    while start<=end:
+        mid = start + (end-start)//2
+        if l[mid]==x:
+            res = mid
+            if flag:
+                start = mid+1
+            else:
+                end = mid-1
+        elif l[mid] < x:
+            start = mid+1
+        else:
+            end = mid-1
+    return res        
+for _ in range(int(input())):
+    n, x = map(int, input().split())
+    l = [int(x) for x in input().split()]
+    s, e = search(l, x, False), search(l, x, True)
+    if s==-1 and e==-1:
+        print(-1)
+    else:
+        print(s, e)
