@@ -1,0 +1,18 @@
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        if root==None:
+            return []
+        q=[]
+        ans = []
+        q.insert(0, root)
+        while len(q):
+            size = len(q)
+            for i in range(size):
+                elem = q.pop()
+                if i==size-1:
+                    ans.append(elem.val)
+                if elem.left:
+                    q.insert(0, elem.left)
+                if elem.right:
+                    q.insert(0, elem.right)
+        return ans
