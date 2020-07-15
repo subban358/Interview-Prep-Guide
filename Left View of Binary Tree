@@ -1,0 +1,17 @@
+def LeftView(root):
+    '''
+    :param root: root of given tree.
+    :return: print the left view of tree, dont print new line
+    '''
+    if root:
+        queue = deque()
+        queue.append(root)
+        while len(queue):
+            size = len(queue)
+            for i in range(size):
+                element = queue.popleft()
+                if i == 0:
+                    print(element.data, end=" ")
+                if element.left: queue.append(element.left)
+                if element.right: queue.append(element.right)
+        
