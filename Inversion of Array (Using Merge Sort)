@@ -1,0 +1,46 @@
+def mergeSort(array, n, ans):
+    auxArr = [0] * n
+    mergeSortUtil(array, 0, n-1, auxArr, ans)
+    
+def mergeSortUtil(array, left, right, auxArr, ans):
+    
+    if left < right:
+        mid = (right + left) // 2
+        mergeSortUtil(array, left, mid, auxArr, ans)
+        mergeSortUtil(array, mid + 1, right, auxArr, ans)
+        merge(array, auxArr, left, mid, right, ans)
+        
+    
+def merge(array, auxArr, left, mid, right, ans):
+    i, j, k = left, mid + 1, left
+
+    while i <= mid and j <= right:
+        if array[i] <= array[j]:
+            auxArr[k] = array[i]
+            i += 1
+            k += 1
+        else:
+            auxArr[k] = array[j]
+            ans[0] += (mid - i + 1)
+            k += 1
+            j += 1
+    while i <= mid:
+        auxArr[k] = array[i]
+        i += 1
+        k += 1
+    while j <= right:
+        auxArr[k] = array[j]
+        j += 1
+        k += 1
+    
+    for index in range(left, right + 1):
+        array[index] = auxArr[index]
+    
+    
+for _ in range(int(input())):
+    n = int(input())
+    l = [int(x) for x in input().split()]
+    ans = [0]
+    mergeSort(l, n, ans)
+    print(ans[0])
+    
