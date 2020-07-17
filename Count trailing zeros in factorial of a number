@@ -1,0 +1,13 @@
+def getNumberOfTrailingZeros(n):
+    
+    ans, power =  0, 5
+    while n//power:
+        ans += n//power
+        power *= 5
+    
+    return ans
+    
+for _ in range(int(input())):
+    number = int(input())
+    print(getNumberOfTrailingZeros(number))
+    
