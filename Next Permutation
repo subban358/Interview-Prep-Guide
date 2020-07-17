@@ -1,0 +1,18 @@
+class Solution:
+       
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        endIndex = len(nums)-2
+        while endIndex >= 0 and nums[endIndex + 1] <= nums[endIndex]:
+            endIndex -= 1  
+        if endIndex >= 0:
+            j = len(nums) - 1
+            while j >= endIndex and nums[j] <= nums[endIndex]:
+                j -= 1
+            nums[endIndex], nums[j] = nums[j], nums[endIndex]
+        nums[endIndex + 1 : ] = nums[endIndex + 1 : ][ : : -1]
+            
+            
+            
