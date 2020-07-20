@@ -1,0 +1,17 @@
+def maxLen(n, arr):
+    maxZeroLen = 0
+    currentSum = 0
+    seen = {}
+    
+    for index in range(n):
+        currentSum += arr[index]
+        if arr[index] == 0 and maxZeroLen == 0:
+            maxZeroLen = 1
+        if currentSum == 0:
+            maxZeroLen = index + 1
+        if currentSum in seen:
+            maxZeroLen = max(maxZeroLen, index - seen[currentSum])
+        else:
+            seen[currentSum] = index
+        
+    return maxZeroLen
