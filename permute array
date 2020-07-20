@@ -1,0 +1,22 @@
+class Solution:
+    def swap(self, nums, i, j):
+        nums[i], nums[j] = nums[j], nums[i]
+        
+    def getPermutation(self, nums, index):
+        if index >= len(nums):
+            temp = list(nums)
+            self.result.append(temp)
+            return
+        for i in range(index, len(nums)):
+            self.swap(nums, index, i)
+            self.getPermutation(nums, index+1)
+            self.swap(nums, index, i)
+            
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) == 0:
+             return []
+        self.result = []
+        self.getPermutation(nums, 0)
+        
+        return self.result
+        
