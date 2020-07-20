@@ -1,0 +1,41 @@
+class Solution:    
+    def uniquePaths(self, m: int, n: int) -> int:
+        memo = [[1 for _ in range(m)] for _ in range(n)]
+        print(memo)
+        for i in range(1, n):
+            for j in range(1, m):
+                memo[i][j] = memo[i-1][j] + memo[i][j-1]
+        return memo[n-1][m-1]
+    
+
+
+class Solution:
+    def uniquePathsRec(self, m, n, memo):
+        if m == 0 and n == 0:
+            memo[str(m)+" "+str(n)] = 0
+            return memo[str(m)+" "+str(n)]
+        if m == 1 or n == 1:
+            memo[str(m)+" "+str(n)] = 1
+            return memo[str(m)+" "+str(n)]
+        if str(m)+" "+str(n) in memo:
+            return memo[str(m)+" "+str(n)]
+        memo[str(m-1)+" "+str(n)] = self.uniquePathsRec(m-1, n, memo)
+        memo[str(m)+" "+str(n-1)] = self.uniquePathsRec(m, n-1, memo)
+        
+        return  memo[str(m-1)+" "+str(n)] + memo[str(m)+" "+str(n-1)]
+    
+    def uniquePaths(self, m: int, n: int) -> int:
+        memo = {}
+        return self.uniquePathsRec(m, n, memo)
+    
+
+class Solution:
+    def uniquePathsRec(self, m, n):
+        if m == 0 and n == 0:
+            return 0
+        if m == 1 or n == 1:
+            return 1
+        return self.uniquePathsRec(m-1, n) + self.uniquePathsRec(m, n-1)
+    def uniquePaths(self, m: int, n: int) -> int:
+        return self.uniquePathsRec(m, n)
+    
