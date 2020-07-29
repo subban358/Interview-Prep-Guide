@@ -1,0 +1,28 @@
+class Solution:
+    def flatten(self, head: 'Node') -> 'Node':
+        if head is None: 
+            return head
+        stack = []
+        current, previous = head, None
+        while current:
+            if current.child:
+                child = current.child
+                if current.next:
+                    stack.append(current.next)
+                    current.next.prev = None
+                current.next = child
+                child.prev = current
+                current.child = None
+            previous = current
+            current = current.next
+            
+        while stack:
+            top = stack.pop()
+            previous.next = top
+            top.prev = previous
+            while top:
+                previous = top
+                top = top.next
+                
+        return head
+        
