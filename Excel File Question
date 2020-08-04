@@ -1,0 +1,22 @@
+#Excel Sheet Column Title
+
+class Solution:
+    def convertToTitle(self, n: int) -> str:
+        res = ""
+        while n:
+            char = chr(ord('A')+(n-1)%26)
+            res += char
+            n = (n-1)//26
+        return res[::-1]
+        
+# Excel Sheet Column Number
+
+class Solution:
+    def titleToNumber(self, n: str) -> int:
+        s = n[::-1]
+        ans, k = 0, 0
+        for i in s:
+            ans += (ord(i)-ord('A')+1)*pow(26,k)
+            k+=1
+        return ans
+    
