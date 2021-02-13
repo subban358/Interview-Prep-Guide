@@ -18,3 +18,23 @@ for _ in range(int(input())):
     for i in matrix:
         print(*i,end=" ")
     print()    
+
+    
+###########################################################################
+    
+class Solution:
+    def reverse(self, nums):
+        l, r = 0, len(nums)-1
+        while l <= r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
+            
+    def rotate(self, A):
+        n = len(A)
+        for i in range(0, n):
+            for j in range(i, n):
+                A[i][j], A[j][i] = A[j][i], A[i][j]
+        for row in A:
+            self.reverse(row)
+        return A
